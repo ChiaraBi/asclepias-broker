@@ -104,6 +104,8 @@ setup(
             'asclepias_broker.admin:relationship_adminview',
             'asclepias_broker_event = '
             'asclepias_broker.admin:event_adminview',
+            'asclepias_broker_updatemetadata = '
+            'asclepias_broker.admin:updatemetadata_adminview',
         ],
         'invenio_base.blueprints': [
             'asclepias_broker = asclepias_broker.views:blueprint',

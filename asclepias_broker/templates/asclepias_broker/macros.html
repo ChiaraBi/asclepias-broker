@@ -1,0 +1,31 @@
+{%- macro render_form_label(field, size=2, show=True) %}
+{%- if size %}<div class="col-md-{{ size }}">{%- endif %}
+{% if show %}
+  <label class="control-label" for="{{field.label.field_id}}">{{ field.label.text }}</label>
+{% endif %}
+{%- if size %}</div>{%- endif %}
+{%- endmacro %}
+
+{%- macro render_form_input(field, size=4, extras={}) %}
+{%- if size %}<div class="col-md-{{ size }}">{%- endif %}
+{% set _extras = {'class_': 'form-control'} %}
+{% set _ = _extras.update(extras) %}
+{{field(**_extras)}}
+{%- if field.description %}
+  <p class="text-muted field-desc"><small>{{field.description|safe}}</small></p>
+{%- endif %}
+<span id="error-{{ field.name }}" class="text-danger help-inline">
+{%- for error in field.errors %}
+  {{ error }}
+  {%- if not loop.last %}<br/>{%- endif %}
+{%- endfor %}
+</span>
+{%- if size %}</div>{%- endif %}
+{%- endmacro %}
+
+{%- macro render_form_field(field, label_size=2, input_size=4, input_extras={}, label=True) %}
+<div class="form-group field-{{ field.name }}{% if field.errors %} has-error {% endif %}">
+  {{ render_form_label(field, label_size, label) }}
+  {{ render_form_input(field, input_size, input_extras) }}
+</div>
+{%- endmacro %}

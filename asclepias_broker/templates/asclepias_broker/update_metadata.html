@@ -1,0 +1,25 @@
+{#
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2018 CERN.
+#
+# Asclepias Broker is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+-#}
+
+{% extends 'admin/master.html' %}
+{%- from "asclepias_broker/macros.html" import render_form_field, render_form_input %}
+
+{% block body %}git s
+<form method="POST">
+  {{ update_metadata_form.csrf_token }}
+   <div class="form-group row">
+      {{ render_form_field(update_metadata_form.dir_path) }}
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <button type="submit" class="btn btn-primary">Update Metadata</button>
+      </div>
+    </div>
+</form>
+{% endblock %}
